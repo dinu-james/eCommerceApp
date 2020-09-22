@@ -24,10 +24,35 @@ public class OrderController {
         return orderService.retrieveByOrderID(orderId);
     }
 
-    @GetMapping("/createOrder")
-    public String createOrder(){
-         orderService.createOrder();
-         return "Order Created";
+    @GetMapping("/createHardCoded")
+    public String createHardCodedOrder(Order order){
+         orderService.createHardCodedOrder();
+         return "HardCoded Order Created";
     }
+
+    @GetMapping("/createOrder")
+    public String createOrder(@RequestBody Order order){
+        orderService.createOrder(order);
+        return "Order Created";
+    }
+
+    @GetMapping("/updateOrder")
+    public String update(@RequestBody Order order){
+        orderService.updateOrder(order);
+        return "Order Updated";
+    }
+
+    @GetMapping("/updateOrderStatus")
+    public String updateOrderStatus(@RequestBody Order order){
+        orderService.updateOrderStatus(order);
+        return "Order Updated";
+    }
+
+    @GetMapping("/deleteOrder/{orderId}")
+    public String update(@PathVariable("orderId") int orderId){
+        orderService.deleteOrder(orderId);
+        return "Order Deleted";
+    }
+
 
 }
