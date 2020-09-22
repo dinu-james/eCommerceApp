@@ -30,19 +30,19 @@ public class OrderController {
          return "HardCoded Order Created";
     }
 
-    @GetMapping("/createOrder")
+    @PostMapping("/createOrder")
     public String createOrder(@RequestBody Order order){
         orderService.createOrder(order);
         return "Order Created";
     }
 
-    @GetMapping("/updateOrder")
+    @PostMapping("/updateOrder")
     public String update(@RequestBody Order order){
         orderService.updateOrder(order);
         return "Order Updated";
     }
 
-    @GetMapping("/updateOrderStatus")
+    @PostMapping("/updateOrderStatus")
     public String updateOrderStatus(@RequestBody Order order){
         orderService.updateOrderStatus(order);
         return "Order Updated";
