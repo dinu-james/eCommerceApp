@@ -1,10 +1,14 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.controller;
 
+import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoOrderFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Order;
 import com.sv.ecommerceapp.orders.ordersmicroservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -52,6 +56,22 @@ public class OrderController {
     public String update(@PathVariable("orderId") int orderId){
         orderService.deleteOrder(orderId);
         return "Order Deleted";
+    }
+
+    @GetMapping("/getAllOrders")
+    public List<Order> getAllOrders(){
+        return orderService.getAllOrders();
+    }
+
+    @GetMapping("/getOrdersByStatus/{status}")
+    public ResponseEntity<List<Order>> getOrdersByStatus(@PathVariable("status") String status) throws NoOrderFoundException {
+        List<Order> list;
+        try {
+            list = orderService.getOrdersByStatus(status);
+        } catch (NoOrderFoundException e) {
+            throw new NoOrderFoundException();
+        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 
