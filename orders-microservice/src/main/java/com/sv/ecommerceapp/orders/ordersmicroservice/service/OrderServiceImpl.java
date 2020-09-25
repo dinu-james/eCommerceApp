@@ -1,12 +1,13 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.service;
 
+import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoOrderFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Order;
 import com.sv.ecommerceapp.orders.ordersmicroservice.repositry.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,8 +44,25 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrder(int orderId) {
-        orderRepository.deleteById(orderId);
+    public List<Order> getAllOrders() {
+        List<Order> ordersList =orderRepository.findAll();
+       return ordersList;
+    }
+
+    @Override
+    public List<Order> getOrdersByStatus(String status) throws NoOrderFoundException {
+        List<Order> ordersList =orderRepository.findByStatus(status);
+        if(ordersList.isEmpty()){
+            throw new NoOrderFoundException();
+        }
+        return ordersList;
+               // Optional.ofNullable(ordersList).orElseThrow(() -> new NoOrderFoundException("No Order Found"));
+    }
+
+
+    @Override
+    public Order deleteOrder(int orderId) {
+        return orderRepository.deleteOrderById(orderId);
     }
 
     @Override
