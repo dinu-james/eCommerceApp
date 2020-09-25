@@ -13,7 +13,7 @@ public interface OrderService {
 
     public void createOrder(Order order);
     public void updateOrder(Order order);
-    public void deleteOrder(int orderId);
+    public Order deleteOrder(int orderId);
 
 
     public void updateOrderStatus(Order order);
