@@ -22,25 +22,26 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void createHardCodedOrder() {
+    public Order createDefaultOrder() {
         Order order = new Order();
         order.setOrderId(123);
         order.setCustomerId("ABCD");
         order.setStatus("PENDING");
         order.setOrderDate(LocalDate.now());
-        orderRepository.save(order);
+        return orderRepository.save(order);
     }
 
     @Override
-    public void updateOrder(Order order) {
-       orderRepository.save(order);
+    public Order updateOrder(Order order) {
+       return orderRepository.save(order);
     }
 
     @Override
-    public void updateOrderStatus(Order order) {
+    public Order updateOrderStatus(Order order) {
         Optional<Order> or=  orderRepository.findById(order.getOrderId());
         or.get().setStatus(order.getStatus());
-        orderRepository.save(or.get());
+        Order o = orderRepository.save(or.get());
+        return o;
     }
 
     @Override
@@ -66,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void createOrder(Order order) {
-        orderRepository.save(order);
+    public Order createOrder(Order order) {
+        return orderRepository.save(order);
     }
 }
