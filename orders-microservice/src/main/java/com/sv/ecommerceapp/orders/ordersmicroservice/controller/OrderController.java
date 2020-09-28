@@ -1,5 +1,6 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.controller;
 
+import com.sv.ecommerceapp.orders.ordersmicroservice.exception.BadRequest;
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoOrderFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoSuchDataFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Order;
@@ -25,32 +26,38 @@ public class OrderController {
     }
 
     @RequestMapping(value = "retrieve/{orderId}",method=RequestMethod.GET)
-    public Optional<Order> retrieveByOrderID(@PathVariable("orderId") int orderId){
-        return orderService.retrieveByOrderID(orderId);
+    public ResponseEntity<Optional<Order>> retrieveByOrderID(@PathVariable("orderId") int orderId){
+    	Optional<Order> order = orderService.retrieveByOrderID(orderId);
+    	if(!order.isPresent()) throw new NoOrderFoundException("No order with Order Id : "+orderId);
+        return new ResponseEntity<>(order,HttpStatus.OK);
     }
 
     @RequestMapping(value ="/createDefault",method=RequestMethod.POST)
-    public String createHardCodedOrder(Order order){
-         orderService.createHardCodedOrder();
-         return "Default order created!";
+    public ResponseEntity<Order> createDefaultOrder(Order order){
+         Order or = orderService.createDefaultOrder();
+         if(or == null) throw new BadRequest("Order not created");
+         return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
     @RequestMapping(value ="/createOrder",method=RequestMethod.POST)
-    public String createOrder(@RequestBody Order order){
-    orderService.createOrder(order);
-        return "Order Created";
+    public ResponseEntity<Order> createOrder(@RequestBody Order order){
+    	Order or = orderService.createOrder(order);
+    	if(or == null) throw new BadRequest("Order not created");
+    	return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
     @RequestMapping(value ="/updateOrder",method=RequestMethod.POST)
-    public String update(@RequestBody Order order){
-        orderService.updateOrder(order);
-        return "Order Updated";
+    public ResponseEntity<Order> update(@RequestBody Order order){
+    	Order or = orderService.updateOrder(order);
+    	if(or == null) throw new BadRequest("Order not updated");
+    	return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
     @RequestMapping(value ="/updateOrderStatus",method=RequestMethod.POST)
-    public String updateOrderStatus(@RequestBody Order order){
-        orderService.updateOrderStatus(order);
-        return "Order Updated";
+    public ResponseEntity<Order> updateOrderStatus(@RequestBody Order order){
+    	Order or = orderService.updateOrderStatus(order);
+    	if(or == null) throw new BadRequest("Order status not updated");
+    	return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
     @RequestMapping(value ="/deleteOrder/{orderId}",method=RequestMethod.DELETE)
