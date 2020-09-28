@@ -32,8 +32,9 @@ public class OrderController {
         return new ResponseEntity<>(order,HttpStatus.OK);
     }
 
-    @RequestMapping(value ="/createDefault",method=RequestMethod.POST)
-    public ResponseEntity<Order> createDefaultOrder(Order order){
+ 
+    @RequestMapping(value ="/createDefault",method=RequestMethod.GET)
+    public ResponseEntity<Order> createDefaultOrder(){
          Order or = orderService.createDefaultOrder();
          if(or == null) throw new BadRequest("Order not created");
          return new ResponseEntity<>(or,HttpStatus.OK);
