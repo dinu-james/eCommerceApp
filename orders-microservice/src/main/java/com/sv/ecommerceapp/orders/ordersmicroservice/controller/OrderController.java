@@ -29,8 +29,8 @@ public class OrderController {
         return orderService.retrieveByOrderID(orderId);
     }
 
-    @RequestMapping(value ="/createDefault",method=RequestMethod.POST)
-    public String createHardCodedOrder(Order order){
+    @RequestMapping(value ="/createDefault",method=RequestMethod.GET)
+    public String createHardCodedOrder(){
          orderService.createHardCodedOrder();
          return "Default order created!";
     }
