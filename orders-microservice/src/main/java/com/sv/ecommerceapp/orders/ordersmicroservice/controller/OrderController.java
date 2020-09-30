@@ -19,20 +19,30 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+    
+    @Autowired
+    OrderProxy orderProxy;
 
     @RequestMapping("/status/test")
     public String test(){
         return "Orders-microservice is up !";
     }
 
+    
     @RequestMapping(value = "retrieve/{orderId}",method=RequestMethod.GET)
-    public ResponseEntity<Optional<Order>> retrieveByOrderID(@PathVariable("orderId") int orderId){
-    	Optional<Order> order = orderService.retrieveByOrderID(orderId);
+    public ResponseEntity<Optional<Order>> retrieveByOrderID(@PathVariable("orderId") int orderId ){
+//    	String name = orderProxy.getProductNameById(productId);
+//    	System.out.println("====================================="+name);
+    	
+    	Optional<Order> order= Optional.empty();
+    	
+    	order = orderService.retrieveByOrderID(orderId);
+//    	order.get().set(name);
     	if(!order.isPresent()) throw new NoOrderFoundException("No order with Order Id : "+orderId);
         return new ResponseEntity<>(order,HttpStatus.OK);
     }
 
- 
+    
     @RequestMapping(value ="/createDefault",method=RequestMethod.GET)
     public ResponseEntity<Order> createDefaultOrder(){
          Order or = orderService.createDefaultOrder();
