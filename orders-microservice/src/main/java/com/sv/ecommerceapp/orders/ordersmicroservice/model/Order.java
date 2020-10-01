@@ -1,6 +1,5 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")
@@ -26,8 +25,19 @@ public class Order {
 	@Column(name = "ORDER_DATE")
 	private LocalDate orderDate;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Item> items = new HashSet<Item>();
+	@OneToMany( mappedBy = "id")
+	private List<Item> items = new ArrayList<Item>();
+	
+	
+
+	public Order(List<Item> items) {
+		super();
+		this.items = items;
+	}
+
+	public Order() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getOrderId() {
 		return orderId;
@@ -53,11 +63,11 @@ public class Order {
 		return orderDate;
 	}
 
-	public Set<Item> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
 
-	public void setItems(Set<Item> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
 

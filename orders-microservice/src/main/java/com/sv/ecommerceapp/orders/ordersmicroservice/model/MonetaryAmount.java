@@ -19,7 +19,8 @@ public class MonetaryAmount {
         this(currency, new BigDecimal(value));
     }
 
-    public MonetaryAmount(Currency currency, BigDecimal value) {
+    @SuppressWarnings("deprecation")
+	public MonetaryAmount(Currency currency, BigDecimal value) {
 
         Assert.notNull(currency);
         Assert.notNull(value);
@@ -37,7 +38,8 @@ public class MonetaryAmount {
         return currency + value.toString();
     }
 
-    public MonetaryAmount add(MonetaryAmount other) {
+    @SuppressWarnings("deprecation")
+	public MonetaryAmount add(MonetaryAmount other) {
 
         if (other == null) {
             return this;

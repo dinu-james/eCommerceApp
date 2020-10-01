@@ -1,9 +1,11 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.service;
 
+import com.sv.ecommerceapp.orders.ordersmicroservice.controller.OrderProxy;
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoOrderFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Item;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.MonetaryAmount;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Order;
+import com.sv.ecommerceapp.orders.ordersmicroservice.repositry.ItemRepository;
 import com.sv.ecommerceapp.orders.ordersmicroservice.repositry.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderRepository orderRepository;
+    
+//    @Autowired
+//    ItemRepository itemRepos;
+    
+    @Autowired
+    OrderProxy orderProxy;
 
     @Override
     public Optional<Order> retrieveByOrderID(int orderId) {
@@ -43,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
         Set<Item> itemList = new HashSet<>();
         itemList.add(item);
         itemList.add(item1);
-        order.setItems(itemList);
+//        order.setItems(itemList);
         order.setStatus("PENDING");
         order.setOrderDate(LocalDate.now());
         return orderRepository.save(order);
@@ -85,7 +95,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public Order createOrder(Order order) {
+    	List<Item> item = orderProxy.getAllProducts();
+    	order.setItems(item);
+//    	for(Item i : item) {
+//    		i.setName();
+//    	}
+//    	
+//    	itemRepos.saveAll(item);
         return orderRepository.save(order);
     }
 }
