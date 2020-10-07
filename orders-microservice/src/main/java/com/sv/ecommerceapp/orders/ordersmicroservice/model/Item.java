@@ -1,14 +1,15 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.model;
 
-import javax.persistence.CascadeType;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Version;
 
 @Entity
@@ -26,9 +27,8 @@ public class Item {
 	@Version
 	@Column(name = "version")
 	private Integer version;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_id")
-	private Order order;
+	@ManyToMany(mappedBy = "items")
+	private List<Order> order;
 
 	public Long getId() {
 		return this.id;
@@ -77,6 +77,14 @@ public class Item {
 
 	public void setPrice(MonetaryAmount price) {
 		this.price = price;
+	}
+
+	public List<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.order = order;
 	}
 
 }
