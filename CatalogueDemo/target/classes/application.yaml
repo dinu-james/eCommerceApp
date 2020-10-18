@@ -1,0 +1,38 @@
+
+#Application Configuration
+spring:
+  application:
+    name: catalogue-service
+  jpa:
+    show-sql: true
+    open-in-view: false
+  datasource:
+    initialization-mode: always
+    url: jdbc:h2:mem:testdb
+  data:
+    jpa:
+     repositories:
+      bootstrap-mode: default
+  h2:
+   console:
+    enabled: true
+
+#Eureka Cofig
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+
+server:
+  port: 8000
+
+#Mongo Configuration
+#mongo:
+#  database : person-db
+#  url : mongodb+srv://my_user:WROLgDt2JRYBokMS@cluster0-rrnyw.mongodb.net/test?retryWrites=true&w=majority
+
+#logging:
+#  level:
+#    root: ERROR
+#    org.springframework.web: ERROR
+#    org.hibernate: ERROR
