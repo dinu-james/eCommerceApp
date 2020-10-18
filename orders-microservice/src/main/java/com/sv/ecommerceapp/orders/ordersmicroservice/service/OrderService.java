@@ -9,9 +9,9 @@ import java.util.Optional;
 public interface OrderService {
 
     public Optional<Order> retrieveByOrderID(int orderId);
-    public Order createDefaultOrder();
+    public String createDefaultOrder();
 
-    public Order createOrder(Order order);
+    public Order createOrder();
     public Order updateOrder(Order order);
     public Order deleteOrder(int orderId);
 

@@ -1,5 +1,8 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,15 +31,11 @@ public class Order {
 	private String status;
 
 	@Column(name = "ORDER_DATE")
-	private LocalDate orderDate;
+	private LocalDateTime orderDateTime;
 
-	@ManyToMany
-	@JoinTable(name = "orders_items", joinColumns = {
-            @JoinColumn(name = "order_id", referencedColumnName = "order_id") }, inverseJoinColumns = {
-            @JoinColumn(name = "id", referencedColumnName = "id") })
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("order")
 	private List<Item> items = new ArrayList<Item>();
-	
-	
 
 	public Order(List<Item> items) {
 		super();
@@ -60,12 +62,12 @@ public class Order {
 		this.status = status;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
-		this.orderDate = orderDate;
+	public void setOrderDateTime(LocalDateTime orderDateTime) {
+		this.orderDateTime = orderDateTime;
 	}
 
-	public LocalDate getOrderDate() {
-		return orderDate;
+	public LocalDateTime getOrderDateTime() {
+		return orderDateTime;
 	}
 
 	public List<Item> getItems() {
@@ -78,8 +80,17 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", status=" + status + ", orderDate=" + orderDate + ", items=" + items
+		return "Order [orderId=" + orderId + ", status=" + status + ", orderDate=" + orderDateTime + ", items=" + items
 				+ "]";
 	}
 
+	public void addItems(Item i) {
+		if (i != null) {
+			if (items != null) {
+				items = new ArrayList<>();
+			}
+			i.setOrder(this);
+			items.add(i);
+		}
+	}
 }

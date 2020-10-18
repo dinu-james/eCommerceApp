@@ -1,20 +1,20 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.service;
 
-import com.sv.ecommerceapp.orders.ordersmicroservice.controller.OrderProxy;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.sv.ecommerceapp.orders.ordersmicroservice.proxy.CartProxy;
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoOrderFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Item;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.MonetaryAmount;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Order;
-import com.sv.ecommerceapp.orders.ordersmicroservice.repositry.ItemRepository;
 import com.sv.ecommerceapp.orders.ordersmicroservice.repositry.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.HashSet;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -26,9 +26,12 @@ public class OrderServiceImpl implements OrderService {
     
 //    @Autowired
 //    ItemRepository itemRepos;
-    
+
     @Autowired
-    OrderProxy orderProxy;
+    CartProxy cartProxy;
+    
+   /* @Autowired
+    CatalogueProxy catalogueProxy;*/
 
     @Override
     public Optional<Order> retrieveByOrderID(int orderId) {
@@ -36,7 +39,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order createDefaultOrder() {
+    @HystrixCommand(fallbackMethod = "createDafaultResponse"
+    , commandProperties = {
+    		   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")})
+    public String createDefaultOrder() {
+    	try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         Order order = new Order();
        Item item  = new Item();
         item.setId(1234L);
@@ -50,13 +62,22 @@ public class OrderServiceImpl implements OrderService {
         item1.setPrice(new MonetaryAmount(MonetaryAmount.EURO, 2000.00));
         item1.setQuantity(3);
         item1.setVersion(2);
-        Set<Item> itemList = new HashSet<>();
+        List<Item> itemList = new ArrayList<>();
         itemList.add(item);
         itemList.add(item1);
-//        order.setItems(itemList);
+        order.setOrderId(12);
+        order.setItems(itemList);
         order.setStatus("PENDING");
-        order.setOrderDate(LocalDate.now());
-        return orderRepository.save(order);
+        order.setOrderDateTime(LocalDateTime.now());
+        orderRepository.save(order);
+        return "Order created";
+    }
+    
+    public String createDafaultResponse() {
+		
+    	return "inside fallback method";
+    	
+    	
     }
 
     @Override
@@ -96,14 +117,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public Order createOrder(Order order) {
-    	List<Item> item = orderProxy.getAllProducts();
-    	order.setItems(item);
-//    	for(Item i : item) {
-//    		i.setName();
-//    	}
-//    	
-//    	itemRepos.saveAll(item);
+    public Order createOrder() {
+    	Order order = new Order();
+    	order.setStatus("New");
+    	order.setOrderDateTime(LocalDateTime.now());
+    	//List<Item> items = catalogueProxy.getAllProducts();
+        List<Item> items = cartProxy.getAllProductsFromCart().getItems();
+    	items.forEach(item-> order.addItems(item));
+    	order.setItems(items);
         return orderRepository.save(order);
     }
 }

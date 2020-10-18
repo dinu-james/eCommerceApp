@@ -20,8 +20,8 @@ public class OrderController {
     @Autowired
     OrderService orderService;
     
-    @Autowired
-    OrderProxy orderProxy;
+  /*  @Autowired
+    CatalogueProxy catalogueProxy;*/
 
     @RequestMapping("/status/test")
     public String test(){
@@ -44,15 +44,15 @@ public class OrderController {
 
     
     @RequestMapping(value ="/createDefault",method=RequestMethod.GET)
-    public ResponseEntity<Order> createDefaultOrder(){
-         Order or = orderService.createDefaultOrder();
-         if(or == null) throw new BadRequest("Order not created");
+    public ResponseEntity<String> createDefaultOrder(){
+         String or = orderService.createDefaultOrder();
+//         if(or == null) throw new BadRequest("Order not created");
          return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
     @RequestMapping(value ="/createOrder",method=RequestMethod.POST)
-    public ResponseEntity<Order> createOrder(@RequestBody Order order){
-    	Order or = orderService.createOrder(order);
+    public ResponseEntity<Order> createOrder(){
+    	Order or = orderService.createOrder();
     	if(or == null) throw new BadRequest("Order not created");
     	return new ResponseEntity<>(or,HttpStatus.OK);
     }

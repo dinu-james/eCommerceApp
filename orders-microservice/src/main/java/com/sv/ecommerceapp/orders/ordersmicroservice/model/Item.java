@@ -1,15 +1,13 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
 @Entity
@@ -20,15 +18,17 @@ public class Item {
 	@Embedded
 	private MonetaryAmount price;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Long id;
 
 	@Version
 	@Column(name = "version")
 	private Integer version;
-	@ManyToMany(mappedBy = "items")
-	private List<Order> order;
+	@ManyToOne
+	@JoinColumn(name ="order_id")
+	@JsonIgnoreProperties("items")
+	private Order order;
 
 	public Long getId() {
 		return this.id;
@@ -79,12 +79,18 @@ public class Item {
 		this.price = price;
 	}
 
-	public List<Order> getOrder() {
+	public Order getOrder() {
 		return order;
 	}
 
-	public void setOrder(List<Order> order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
+	
+//	public void addOrderId(Order order) {
+//		order.setItems((List<Item>) this);
+//		order.se
+//		
+//	}
 
 }
