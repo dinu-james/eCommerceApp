@@ -2,24 +2,23 @@ package com.sv.ecommerceapp.orders.ordersmicroservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Version;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Item {
+public class Item{
 
 	private String name;
 	private int quantity;
 	@Embedded
 	private MonetaryAmount price;
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private int slno;
+
+
+	@Column(name = "ITEM_ID")
 	private Long id;
 
 	@Version
@@ -44,6 +43,14 @@ public class Item {
 
 	public void setVersion(Integer version) {
 		this.version = version;
+	}
+
+	public int getSlno() {
+		return slno;
+	}
+
+	public void setSlno(int slno) {
+		this.slno = slno;
 	}
 
 	public Item() {

@@ -46,8 +46,8 @@ private final ProductService productService;
     @ApiOperation("create product")
     @PostMapping(value="/CreateProduct")
     public ResponseEntity<String> CreateProduct(@Valid@RequestBody Product product){
-        String reponseRes = productService.createProduct(product);
-       return ResponseEntity.status(HttpStatus.OK).body(reponseRes);
+        String responseRes = productService.createProduct(product);
+       return ResponseEntity.status(HttpStatus.OK).body(responseRes);
     }
 
 

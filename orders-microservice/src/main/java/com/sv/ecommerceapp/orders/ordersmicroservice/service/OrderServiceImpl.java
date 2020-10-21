@@ -23,15 +23,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderRepository orderRepository;
-    
-//    @Autowired
-//    ItemRepository itemRepos;
+
 
     @Autowired
     CartProxy cartProxy;
-    
-   /* @Autowired
-    CatalogueProxy catalogueProxy;*/
+
 
     @Override
     public Optional<Order> retrieveByOrderID(int orderId) {
@@ -121,10 +117,13 @@ public class OrderServiceImpl implements OrderService {
     	Order order = new Order();
     	order.setStatus("New");
     	order.setOrderDateTime(LocalDateTime.now());
-    	//List<Item> items = catalogueProxy.getAllProducts();
         List<Item> items = cartProxy.getAllProductsFromCart().getItems();
     	items.forEach(item-> order.addItems(item));
     	order.setItems(items);
-        return orderRepository.save(order);
+        Order savedOrder = orderRepository.save(order);
+        if(null != savedOrder){
+            cartProxy.clearCart();
+        }
+        return savedOrder;
     }
 }

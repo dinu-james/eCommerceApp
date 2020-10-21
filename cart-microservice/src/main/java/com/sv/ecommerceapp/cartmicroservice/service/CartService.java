@@ -11,7 +11,7 @@ public interface CartService {
 
 	Cart retrieveCart();
 
-	void deleteCart();
+	void clearCart();
 
 	void removeItem(Long productId);
 }

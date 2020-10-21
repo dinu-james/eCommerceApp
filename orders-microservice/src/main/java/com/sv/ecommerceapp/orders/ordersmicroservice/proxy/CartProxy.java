@@ -13,4 +13,7 @@ public interface CartProxy {
 
     @GetMapping(value = "/cart-service/cart/retrieveCart")
     public Cart getAllProductsFromCart ();
+
+    @GetMapping(value = "/cart-service/cart/clearCart")
+    public String clearCart ();
 }

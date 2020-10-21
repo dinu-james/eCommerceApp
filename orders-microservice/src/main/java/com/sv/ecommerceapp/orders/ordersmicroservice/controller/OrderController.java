@@ -5,6 +5,7 @@ import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoOrderFoundExcep
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoSuchDataFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Order;
 import com.sv.ecommerceapp.orders.ordersmicroservice.service.OrderService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,37 +20,30 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
-    
-  /*  @Autowired
-    CatalogueProxy catalogueProxy;*/
 
     @RequestMapping("/status/test")
     public String test(){
         return "Orders-microservice is up !";
     }
 
-    
+
+    @ApiOperation("Retrieve order by order ID")
     @RequestMapping(value = "retrieve/{orderId}",method=RequestMethod.GET)
     public ResponseEntity<Optional<Order>> retrieveByOrderID(@PathVariable("orderId") int orderId ){
-//    	String name = orderProxy.getProductNameById(productId);
-//    	System.out.println("====================================="+name);
-    	
     	Optional<Order> order= Optional.empty();
-    	
     	order = orderService.retrieveByOrderID(orderId);
-//    	order.get().set(name);
     	if(!order.isPresent()) throw new NoOrderFoundException("No order with Order Id : "+orderId);
         return new ResponseEntity<>(order,HttpStatus.OK);
     }
 
-    
+    @ApiOperation("Create a default order")
     @RequestMapping(value ="/createDefault",method=RequestMethod.GET)
     public ResponseEntity<String> createDefaultOrder(){
          String or = orderService.createDefaultOrder();
-//         if(or == null) throw new BadRequest("Order not created");
          return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
+    @ApiOperation("Create an  order with all items from cart")
     @RequestMapping(value ="/createOrder",method=RequestMethod.POST)
     public ResponseEntity<Order> createOrder(){
     	Order or = orderService.createOrder();
@@ -57,6 +51,7 @@ public class OrderController {
     	return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
+    @ApiOperation("Update an  order")
     @RequestMapping(value ="/updateOrder",method=RequestMethod.POST)
     public ResponseEntity<Order> update(@RequestBody Order order){
     	Order or = orderService.updateOrder(order);
@@ -64,6 +59,7 @@ public class OrderController {
     	return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
+    @ApiOperation("Update an order's delivery status")
     @RequestMapping(value ="/updateOrderStatus",method=RequestMethod.POST)
     public ResponseEntity<Order> updateOrderStatus(@RequestBody Order order){
     	Order or = orderService.updateOrderStatus(order);
@@ -71,6 +67,7 @@ public class OrderController {
     	return new ResponseEntity<>(or,HttpStatus.OK);
     }
 
+    @ApiOperation("Delete an order")
     @RequestMapping(value ="/deleteOrder/{orderId}",method=RequestMethod.DELETE)
     public ResponseEntity<Order> deleteOrders(@PathVariable("orderId") int orderId){
     	Order order = orderService.deleteOrder(orderId);
@@ -79,6 +76,7 @@ public class OrderController {
         
     }
 
+    @ApiOperation("Retrieve all orders")
     @RequestMapping(value ="/getAllOrders",method=RequestMethod.GET)
     public ResponseEntity<List<Order>> getAllOrders(){
     	List<Order> orders = orderService.getAllOrders();
@@ -86,16 +84,11 @@ public class OrderController {
     	return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
+    @ApiOperation("Retrieve all orders with a particular status")
     @RequestMapping(value ="/getOrdersByStatus/{status}",method=RequestMethod.GET)
     public ResponseEntity<List<Order>> getOrdersByStatus(@PathVariable("status") String status) throws NoOrderFoundException {
-    	
         List<Order> list =  orderService.getOrdersByStatus(status);
         if(list == null || list.isEmpty()) throw new NoSuchDataFoundException("No order with status as : "+status);
-       
-		/*
-		 * try { list = orderService.getOrdersByStatus(status); } catch
-		 * (NoOrderFoundException e) { throw new NoOrderFoundException(); }
-		 */
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 

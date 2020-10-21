@@ -42,8 +42,6 @@ public class CartServiceImpl implements CartService {
    private Cart createCart(Item item, Integer quantity) {
         Cart cart =new Cart();
         cart.setCartId(CART_ID);
-      //  List<Item> items = new ArrayList<>();
-     //  items.add(item);
          cart.addItems(item);
         cart.setTotalAmount(CartUtilities.getTotalForCart(cart));
        return cartRepository.save(cart);
@@ -85,7 +83,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void deleteCart() {
+    public void clearCart() {
         cartRepository.deleteById(CART_ID);
     }
 
