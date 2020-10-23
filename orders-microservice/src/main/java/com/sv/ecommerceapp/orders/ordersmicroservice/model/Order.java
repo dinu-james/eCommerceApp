@@ -3,6 +3,7 @@ package com.sv.ecommerceapp.orders.ordersmicroservice.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ public class Order {
 
 	@Column(name = "ORDER_DATE")
 	private LocalDateTime orderDateTime;
+
+	@Column(name = "TOTAL_AMT")
+	private BigDecimal totalAmount;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("order")
@@ -57,6 +61,14 @@ public class Order {
 
 	public LocalDateTime getOrderDateTime() {
 		return orderDateTime;
+	}
+
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 	public List<Item> getItems() {

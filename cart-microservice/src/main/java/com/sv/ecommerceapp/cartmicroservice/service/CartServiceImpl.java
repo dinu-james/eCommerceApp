@@ -29,7 +29,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart addItemToCart(Long productId, Integer quantity) {
-        Item item = catalogueProxy.getOneProductById(productId);
+        Item item = catalogueProxy.retriveProductById(productId);
         item.setQuantity(quantity);
         if(checkIfCartExist()){
           return mergeToCart(item,quantity);

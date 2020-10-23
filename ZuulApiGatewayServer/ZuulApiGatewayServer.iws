@@ -20,38 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc39092e-6a8b-450a-950c-df35ce1e3897" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ZuulApiGatewayServer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ZuulApiGatewayServer.ipr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CatalogueDemo/CatalogueDemo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../CatalogueDemo/CatalogueDemo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CatalogueDemo/CatalogueDemo.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/../CatalogueDemo/CatalogueDemo.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CatalogueDemo/CatalogueDemo.iws" beforeDir="false" afterPath="$PROJECT_DIR$/../CatalogueDemo/CatalogueDemo.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CatalogueDemo/src/main/java/com/example/ecommerce/CatalogueDemo/resource/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CatalogueDemo/src/main/java/com/example/ecommerce/CatalogueDemo/resource/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CatalogueDemo/target/classes/com/example/ecommerce/CatalogueDemo/resource/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CatalogueDemo/target/classes/com/example/ecommerce/CatalogueDemo/resource/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.sv.ecommerceapp.zuul/ZuulApiGatewayServer/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.sv.ecommerceapp.zuul/ZuulApiGatewayServer/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sv/ecommerceapp/zuul/zuulApiGatewayServer/ZuulApiGatewayServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sv/ecommerceapp/zuul/zuulApiGatewayServer/ZuulApiGatewayServerApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sv/ecommerceapp/zuul/zuulApiGatewayServer/ZuulLoggingFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sv/ecommerceapp/zuul/zuulApiGatewayServer/ZuulLoggingFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/sv/ecommerceapp/zuul/zuulApiGatewayServer/ZuulApiGatewayServerApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/sv/ecommerceapp/zuul/zuulApiGatewayServer/ZuulApiGatewayServerApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZuulApiGatewayServer.iws" beforeDir="false" afterPath="$PROJECT_DIR$/ZuulApiGatewayServer.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cart-microservice/cart-microservice.iws" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/cart-microservice.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart-microservice/src/main/java/com/sv/ecommerceapp/cartmicroservice/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/src/main/java/com/sv/ecommerceapp/cartmicroservice/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart-microservice/src/main/java/com/sv/ecommerceapp/cartmicroservice/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/src/main/java/com/sv/ecommerceapp/cartmicroservice/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cart-microservice/src/main/java/com/sv/ecommerceapp/cartmicroservice/proxy/CatalogueProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/src/main/java/com/sv/ecommerceapp/cartmicroservice/proxy/CatalogueProxy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cart-microservice/src/main/java/com/sv/ecommerceapp/cartmicroservice/service/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/src/main/java/com/sv/ecommerceapp/cartmicroservice/service/CartServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cart-microservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart-microservice/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart-microservice/target/classes/com/sv/ecommerceapp/cartmicroservice/controller/CartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/target/classes/com/sv/ecommerceapp/cartmicroservice/controller/CartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cart-microservice/target/classes/com/sv/ecommerceapp/cartmicroservice/service/CartService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/target/classes/com/sv/ecommerceapp/cartmicroservice/service/CartService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../cart-microservice/target/classes/com/sv/ecommerceapp/cartmicroservice/service/CartServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../cart-microservice/target/classes/com/sv/ecommerceapp/cartmicroservice/service/CartServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/model/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/proxy/CartProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/proxy/CartProxy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/service/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/src/main/java/com/sv/ecommerceapp/orders/ordersmicroservice/service/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../orders-microservice/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../orders-microservice/target/classes/com/sv/ecommerceapp/orders/ordersmicroservice/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/target/classes/com/sv/ecommerceapp/orders/ordersmicroservice/controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../orders-microservice/target/classes/com/sv/ecommerceapp/orders/ordersmicroservice/model/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/target/classes/com/sv/ecommerceapp/orders/ordersmicroservice/model/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../orders-microservice/target/classes/com/sv/ecommerceapp/orders/ordersmicroservice/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/target/classes/com/sv/ecommerceapp/orders/ordersmicroservice/model/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../orders-microservice/target/classes/com/sv/ecommerceapp/orders/ordersmicroservice/service/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../orders-microservice/target/classes/com/sv/ecommerceapp/orders/ordersmicroservice/service/OrderServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,13 +290,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -381,6 +361,7 @@
       <option name="presentableId" value="Default" />
       <updated>1603268146911</updated>
       <workItem from="1603268148633" duration="1967000" />
+      <workItem from="1603444388461" duration="693000" />
     </task>
     <servers />
   </component>
@@ -409,6 +390,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>

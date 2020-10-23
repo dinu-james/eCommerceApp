@@ -11,6 +11,7 @@ import com.sv.ecommerceapp.orders.ordersmicroservice.repositry.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,7 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderId(12);
         order.setItems(itemList);
         order.setStatus("PENDING");
+        order.setTotalAmount(BigDecimal.valueOf(1000));
         order.setOrderDateTime(LocalDateTime.now());
         orderRepository.save(order);
         return "Order created";
@@ -118,6 +120,8 @@ public class OrderServiceImpl implements OrderService {
     	order.setStatus("New");
     	order.setOrderDateTime(LocalDateTime.now());
         List<Item> items = cartProxy.getAllProductsFromCart().getItems();
+        BigDecimal totalAmt = cartProxy.getAllProductsFromCart().getTotalAmount();
+        order.setTotalAmount(totalAmt);
     	items.forEach(item-> order.addItems(item));
     	order.setItems(items);
         Order savedOrder = orderRepository.save(order);

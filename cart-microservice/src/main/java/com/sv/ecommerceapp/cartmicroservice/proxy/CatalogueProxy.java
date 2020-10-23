@@ -16,7 +16,7 @@ public interface CatalogueProxy {
 
 	//use this for creating/adding a product in cart
         @GetMapping(value = "/catalogue-service/p1/products/{productId}")
-        public Item getOneProductById (@PathVariable("productId") Long productId);
+        public Item retriveProductById (@PathVariable("productId") Long productId);
 
         // this method will be removed as similar would be created for cart itself
         @GetMapping(value = "/catalogue-service/p1/products/getAllProduct")
