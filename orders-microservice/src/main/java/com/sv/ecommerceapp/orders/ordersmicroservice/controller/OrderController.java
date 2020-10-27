@@ -1,5 +1,6 @@
 package com.sv.ecommerceapp.orders.ordersmicroservice.controller;
 
+import com.sv.ecommerceapp.orders.ordersmicroservice.config.Configuration;
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.BadRequest;
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoOrderFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoSuchDataFoundException;
@@ -20,10 +21,14 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+    
+    @Autowired
+    Configuration config;
 
     @RequestMapping("/status/test")
     public String test(){
-        return "Orders-microservice is up !";
+    	
+        return "Orders-microservice is up !"+config.getMessage()+" ";
     }
 
 

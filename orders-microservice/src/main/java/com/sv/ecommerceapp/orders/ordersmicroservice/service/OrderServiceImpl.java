@@ -36,16 +36,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @HystrixCommand(fallbackMethod = "createDafaultResponse"
-    , commandProperties = {
-    		   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")})
+//    @HystrixCommand(fallbackMethod = "createDafaultResponse"
+//    , commandProperties = {
+//    		   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")})
     public String createDefaultOrder() {
-    	try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//    	try {
+//			Thread.sleep(3000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         Order order = new Order();
        Item item  = new Item();
         item.setId(1234L);
@@ -71,12 +71,12 @@ public class OrderServiceImpl implements OrderService {
         return "Order created";
     }
     
-    public String createDafaultResponse() {
-		
-    	return "inside fallback method";
-    	
-    	
-    }
+//    public String createDafaultResponse() {
+//		
+//    	return "inside fallback method";
+//    	
+//    	
+//    }
 
     @Override
     public Order updateOrder(Order order) {
