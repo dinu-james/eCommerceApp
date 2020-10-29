@@ -8,6 +8,7 @@ import com.sv.ecommerceapp.orders.ordersmicroservice.model.Order;
 import com.sv.ecommerceapp.orders.ordersmicroservice.service.OrderService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +22,16 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+ 
     
-    @Autowired
-    Configuration config;
+    @Value("${message}")
+    String message;
+ 
 
     @RequestMapping("/status/test")
     public String test(){
     	
-        return "Orders-microservice is up !"+config.getMessage()+" ";
+        return "Orders-microservice is up !"+message+" ";
     }
 
 
