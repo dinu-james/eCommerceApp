@@ -33,6 +33,12 @@ public class OrderController {
     	
         return "Orders-microservice is up !"+message+" ";
     }
+    
+    @RequestMapping("/status/test2")
+    public String test2(){
+    	
+        return "Orders-microservice is up ! ";
+    }
 
 
     @ApiOperation("Retrieve order by order ID")
