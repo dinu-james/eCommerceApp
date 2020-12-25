@@ -28,9 +28,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     CartProxy cartProxy;
+    private int orderId;
 
+    public int getOrderId() {
+		return orderId;
+	}
 
-    @Override
+	@Override
     public Optional<Order> retrieveByOrderID(int orderId) {
         return orderRepository.findById(orderId);
     }
@@ -116,6 +120,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public Order createOrder() {
+    	
     	Order order = new Order();
     	order.setStatus("New");
     	order.setOrderDateTime(LocalDateTime.now());
@@ -125,6 +130,8 @@ public class OrderServiceImpl implements OrderService {
     	items.forEach(item-> order.addItems(item));
     	order.setItems(items);
         Order savedOrder = orderRepository.save(order);
+        orderId = savedOrder.getOrderId();
+        
         if(null != savedOrder){
             cartProxy.clearCart();
         }

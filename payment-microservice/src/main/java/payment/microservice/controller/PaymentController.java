@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import payment.microservice.model.Order;
+import payment.microservice.proxy.OrderProxy;
 import payment.microservice.service.PaymentService;
 
 @RestController
@@ -19,17 +20,20 @@ public class PaymentController {
 //	@Autowired
 //	PaymentService paymentService;
 	
+	
 	@Autowired
-	RestTemplate resttemplate;
+	OrderProxy orderProxy;
 
-	@RequestMapping(method = RequestMethod.POST, value = "/initiatePayment")
+	@RequestMapping(method = RequestMethod.GET, value = "/initiatePayment")
 	public void initiatePayment() {
 //		String result = resttemplate.getForObject("http://localhost:8080/orders/status/test", String.class);
 //		System.out.println("==================================="+result);
-		HttpEntity<Order> request = new HttpEntity<>(new Order());
-		
-		ResponseEntity<Order> order = resttemplate.postForEntity("http://localhost:8080/orders/createOrder", request, Order.class);
-		System.out.println("==================================="+order.getBody().getOrderId());
+//		HttpEntity<Order> request = new HttpEntity<>(new Order());
+//		
+//		ResponseEntity<Order> order = resttemplate.postForEntity("http://localhost:8080/orders/createOrder", request, Order.class);
+//		System.out.println("==================================="+order.getBody().getOrderId());
+		int orderId = orderProxy.retrieveOrderID();
+		System.out.println("=========================="+orderId);
 	}
 	
 	

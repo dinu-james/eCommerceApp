@@ -6,6 +6,8 @@ import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoOrderFoundExcep
 import com.sv.ecommerceapp.orders.ordersmicroservice.exception.NoSuchDataFoundException;
 import com.sv.ecommerceapp.orders.ordersmicroservice.model.Order;
 import com.sv.ecommerceapp.orders.ordersmicroservice.service.OrderService;
+import com.sv.ecommerceapp.orders.ordersmicroservice.service.OrderServiceImpl;
+
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +24,9 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+    
+    @Autowired
+    OrderServiceImpl orderServiceImpl;
  
     
     @Value("${message}")
@@ -106,5 +111,14 @@ public class OrderController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    
+    @ApiOperation("Retrieve orderId from created order")
+    @RequestMapping(value = "/retrieveOrderId",method=RequestMethod.GET)
+    public int retrieveOrderID(){
+    	int orderId =0;
+    	orderId = orderServiceImpl.getOrderId();
+//    	if(orderId==0) throw new NoOrderFoundException("No Order Id found");
+        return orderId;
+    }
 
 }
