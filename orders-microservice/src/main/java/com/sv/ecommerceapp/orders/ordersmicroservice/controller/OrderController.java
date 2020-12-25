@@ -25,8 +25,8 @@ public class OrderController {
     @Autowired
     OrderService orderService;
     
-    @Autowired
-    OrderServiceImpl orderServiceImpl;
+//    @Autowired
+//    OrderServiceImpl orderServiceImpl;
  
     
     @Value("${message}")
@@ -116,7 +116,7 @@ public class OrderController {
     @RequestMapping(value = "/retrieveOrderId",method=RequestMethod.GET)
     public int retrieveOrderID(){
     	int orderId =0;
-    	orderId = orderServiceImpl.getOrderId();
+//    	orderId = orderServiceImpl.getOrderId();
 //    	if(orderId==0) throw new NoOrderFoundException("No Order Id found");
         return orderId;
     }

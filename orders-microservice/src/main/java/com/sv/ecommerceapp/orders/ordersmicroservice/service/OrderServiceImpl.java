@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     CartProxy cartProxy;
-    private int orderId;
+    private int orderId=0;
 
     public int getOrderId() {
 		return orderId;
@@ -130,7 +130,7 @@ public class OrderServiceImpl implements OrderService {
     	items.forEach(item-> order.addItems(item));
     	order.setItems(items);
         Order savedOrder = orderRepository.save(order);
-        orderId = savedOrder.getOrderId();
+       // this.orderId = savedOrder.getOrderId();
         
         if(null != savedOrder){
             cartProxy.clearCart();

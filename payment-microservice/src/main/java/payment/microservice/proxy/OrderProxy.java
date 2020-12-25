@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(name = "zuul-api-server")
-//@RibbonClient(name= "orders-service")
+@RibbonClient(name= "orders-service")
 public interface OrderProxy {
 
 	
