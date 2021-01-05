@@ -64,10 +64,10 @@ public class OrderController {
 
     @ApiOperation("Create an  order with all items from cart")
     @RequestMapping(value ="/createOrder",method=RequestMethod.POST)
-    public ResponseEntity<Order> createOrder(){
+    public Order createOrder(){
     	Order or = orderService.createOrder();
     	if(or == null) throw new BadRequest("Order not created");
-    	return new ResponseEntity<>(or,HttpStatus.OK);
+    	return or;
     }
 
     @ApiOperation("Update an  order")
@@ -112,13 +112,22 @@ public class OrderController {
     }
 
     
-    @ApiOperation("Retrieve orderId from created order")
-    @RequestMapping(value = "/retrieveOrderId",method=RequestMethod.GET)
-    public int retrieveOrderID(){
-    	int orderId =0;
-//    	orderId = orderServiceImpl.getOrderId();
-//    	if(orderId==0) throw new NoOrderFoundException("No Order Id found");
-        return orderId;
+//    @ApiOperation("Retrieve orderId from created order")
+//    @RequestMapping(value = "/retrieveOrderId",method=RequestMethod.GET)
+//    public int retrieveOrderID(){
+//    	int orderId =0;
+////    	orderId = orderServiceImpl.getOrderId();
+////    	if(orderId==0) throw new NoOrderFoundException("No Order Id found");
+//        return orderId;
+//    }
+    
+    
+    @RequestMapping(value ="/retrieveOrderId",method=RequestMethod.GET)
+    public int retrieveOrderId(){
+    	int orderId = orderService.retrieveOrderId();
+    	//if(null == orders || orders.isEmpty()) throw new NoOrderFoundException();
+    	return orderId;
     }
+
 
 }

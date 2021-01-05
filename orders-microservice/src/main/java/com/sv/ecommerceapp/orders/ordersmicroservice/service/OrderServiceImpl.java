@@ -130,11 +130,17 @@ public class OrderServiceImpl implements OrderService {
     	items.forEach(item-> order.addItems(item));
     	order.setItems(items);
         Order savedOrder = orderRepository.save(order);
-       // this.orderId = savedOrder.getOrderId();
+        this.orderId = savedOrder.getOrderId();
         
         if(null != savedOrder){
             cartProxy.clearCart();
         }
         return savedOrder;
     }
+
+	@Override
+	public int retrieveOrderId() {
+		
+		return orderId;
+	}
 }
