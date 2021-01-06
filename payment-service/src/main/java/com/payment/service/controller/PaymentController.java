@@ -9,6 +9,8 @@ import com.payment.service.proxy.OrderProxy;
 import com.payment.service.service.PaymentService;
 import com.payment.service.service.PaymentServiceImpl;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/payments")
 public class PaymentController {
@@ -21,6 +23,8 @@ public class PaymentController {
 		@Autowired
 		PaymentService paymentService;
 
+		
+		@ApiOperation("initiates  payment method once the order is placed")
 		@RequestMapping(method = RequestMethod.POST, value = "/initiatePayment")
 		public void initiatePayment() {
 //			String result = resttemplate.getForObject("http://localhost:8080/orders/status/test", String.class);
