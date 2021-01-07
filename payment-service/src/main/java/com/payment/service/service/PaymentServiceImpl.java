@@ -2,12 +2,15 @@ package com.payment.service.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.payment.service.model.ModeOfPayment;
 import com.payment.service.model.PaymentEntity;
 import com.payment.service.model.TransactionId;
@@ -45,9 +48,37 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public String generateReciept() {
-		// TODO Auto-generated method stub
-
-		return null;
+	public PaymentEntity generateReciept() {
+		List<PaymentEntity> payments = paymentRepository.findAll();
+		System.out.println(payments.get(0).getTxnId());
+		return payments.get(0);
+	}
+	
+	@Override
+	@HystrixCommand(fallbackMethod = "defaultResponse", 
+			commandProperties = {@HystrixProperty (name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000")})
+	public String checkForFallback() {
+		int i = (int) (Math.random() * 10);
+		if(i%2 == 0) 
+		{
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return "Method running Fine!" + i;
+		}
+		else {
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return "Going for Fallback!";
+		}
+	}
+	
+	public String defaultResponse() {
+		return "Inside Fallback Method";
 	}
 }

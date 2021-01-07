@@ -1,10 +1,12 @@
 package com.payment.service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.payment.service.model.PaymentEntity;
 import com.payment.service.proxy.OrderProxy;
 import com.payment.service.service.PaymentService;
 import com.payment.service.service.PaymentServiceImpl;
@@ -36,6 +38,16 @@ public class PaymentController {
 			
 			System.out.println(paymentService.pay());
 		}	
+		
+		@GetMapping("/hystrixTest")
+		public String hystrixTest() {
+			return paymentService.checkForFallback();
+		}
+		
+		@GetMapping("/showReceipt")
+		public PaymentEntity generateReciept() {
+			return paymentService.generateReciept();
+		}
 //	
 //	@RequestMapping(value = PaymentLinks.PAYMENT, method = PUT)
 //	ResponseEntity<PaymentResource> submitPayment(@PathVariable("id") Order order,

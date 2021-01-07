@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
+import com.payment.service.model.PaymentEntity;
+
 @Service
 public interface PaymentService {
 
@@ -11,5 +13,7 @@ public interface PaymentService {
 
 	public String pay();
 
-	public String generateReciept();
+	public PaymentEntity generateReciept();
+	
+	public String checkForFallback();
 }

@@ -18,9 +18,9 @@ public class TransactionId {
 		txId = "TX"+timeStamp;
 	}
 
-//	public String getTxId() {
-//		return txId;
-//	}
+	@Override
+	public String toString() {
+		return txId;
+	}
 
-	
 }

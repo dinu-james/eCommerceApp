@@ -61,8 +61,8 @@ public class PaymentEntity {
 	}
 
 
-	public TransactionId getTxnId() {
-		return txnId;
+	public String getTxnId() {
+		return txnId.toString();
 	}
 
 	public void setTxnId(TransactionId txnId) {
@@ -99,5 +99,12 @@ public class PaymentEntity {
 
 	public void setOrderID(int orderID) {
 		this.orderID = orderID;
+	}
+
+	@Override
+	public String toString() {
+		return "PaymentEntity [id=" + id + ", status=" + status + ", isRollback=" + isRollback + ", reason=" + reason
+				+ ", orderID=" + orderID + ", totalAmount=" + totalAmount + ", txnId=" + txnId.toString() + ", timeStamp="
+				+ timeStamp + ", mop=" + mop + "]";
 	}
 }

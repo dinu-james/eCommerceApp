@@ -40,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+   // All rights are reserved to Adarsh Dubey
 //    @HystrixCommand(fallbackMethod = "createDafaultResponse"
 //    , commandProperties = {
 //    		   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")})
